@@ -11,6 +11,8 @@ import java.nio.file.Path;
 
 /**
  * Created by emmakhastings on 24/06/2017.
+ *
+ * Service to process HTML files and replace relative links with absolute links
  */
 class HtmlUpdateService {
 
@@ -27,11 +29,13 @@ class HtmlUpdateService {
             // Get link destination
             String linkDestination = link.attr("href");
 
-            // Replace only relative links
-            if (linkDestination.startsWith("../")) {
-                String newLink = createAbsoluteLink(linkDestination);
-                logger.info("Replacing " + linkDestination + " with " + newLink + " in file " + file.toAbsolutePath());
-                link.attr("href", newLink);
+            // Replace relative links that look like paths
+            if (!linkDestination.isEmpty()) {
+                if (!linkDestination.startsWith("#") && !linkDestination.startsWith("http") && !linkDestination.startsWith("mailto")) {
+                    String newLink = createAbsoluteLink(linkDestination);
+                    logger.info("Replacing " + linkDestination + " with " + newLink + " in file " + file.toAbsolutePath());
+                    link.attr("href", newLink);
+                }
             }
         });
         return doc.html();
@@ -43,9 +47,11 @@ class HtmlUpdateService {
      * @param link relative link in HTML file
      */
     private String createAbsoluteLink(String link) {
-        String[] splitLink = link.split("\\.\\.");
-        return "https://www.terminalfour.com" + splitLink[splitLink.length - 1];
+        if (link.startsWith("../")) {
+            String[] splitLink = link.split("\\.\\.");
+            return "https://www.terminalfour.com" + splitLink[splitLink.length - 1];
+        } else {
+            return "https://www.terminalfour.com" + link;
+        }
     }
-
 }
-
