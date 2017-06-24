@@ -15,7 +15,7 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 /**
  * Created by emmakhastings on 24/06/2017.
  * <p>
- * Service to process HTML files and replace relative links with absolute links
+ * Service to process handle file management
  */
 class FileProcessingService {
 
