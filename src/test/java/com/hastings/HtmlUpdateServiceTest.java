@@ -25,6 +25,7 @@ public class HtmlUpdateServiceTest {
         String newHtmlContent = htmlUpdateService.updateHtml(Paths.get(file.toURI()));
         assertThat(newHtmlContent).isNotBlank()
                 .contains("https://www.terminalfour.com/index.html")
+                .contains("https://www.terminalfour.com/about/index.html")
                 .contains("https://www.terminalfour.com/careers/index.html")
                 .contains("https://www.terminalfour.com/blog/index.html")
                 .contains("mailto:info-uk@terminalfour.com")

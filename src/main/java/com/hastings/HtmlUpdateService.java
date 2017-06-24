@@ -66,7 +66,7 @@ class HtmlUpdateService {
             String[] splitLink = link.split("\\.\\.");
             return "https://www.terminalfour.com" + splitLink[splitLink.length - 1];
         } else {
-            return "https://www.terminalfour.com" + link;
+            return "https://www.terminalfour.com/" + link;
         }
     }
 }
