@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 /**
  * Created by emmakhastings on 24/06/2017.
- *
+ * <p>
  * Service to process HTML files and replace relative links with absolute links
  */
 class HtmlUpdateService {
@@ -21,24 +21,39 @@ class HtmlUpdateService {
     String updateHtml(Path file) throws IOException {
         // Read and parse HTML file
         Document doc = Jsoup.parse(file.toFile(), "UTF-8", "");
+        logger.info("Processing " + file.toAbsolutePath());
 
-        // Extract all links defined with the <a> tag:
-        Elements links = doc.getElementsByTag("a");
+        // Replace links in img and a tags
+        processTag("a", "href", doc);
+        processTag("img", "src", doc);
+        return doc.html();
+    }
+
+    /**
+     * Replace links for selected tag in supplied HTML document
+     *
+     * @param tag       HTML tag
+     * @param attribute HTML attribute to replace with absolute link
+     * @param doc       HTML document
+     */
+    private void processTag(String tag, String attribute, Document doc) {
+
+        // Extract all links defined with the  tag:
+        Elements links = doc.getElementsByTag(tag);
         links.forEach(link -> {
 
             // Get link destination
-            String linkDestination = link.attr("href");
+            String linkDestination = link.attr(attribute);
 
-            // Replace relative links that look like paths
+            // Replace relative links
             if (!linkDestination.isEmpty()) {
                 if (!linkDestination.startsWith("#") && !linkDestination.startsWith("http") && !linkDestination.startsWith("mailto")) {
                     String newLink = createAbsoluteLink(linkDestination);
-                    logger.info("Replacing " + linkDestination + " with " + newLink + " in file " + file.toAbsolutePath());
-                    link.attr("href", newLink);
+                    logger.info("Replacing " + linkDestination + " with " + newLink);
+                    link.attr(attribute, newLink);
                 }
             }
         });
-        return doc.html();
     }
 
     /**

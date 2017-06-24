@@ -27,7 +27,7 @@ public class HtmlUpdateServiceTest {
                 .contains("https://www.terminalfour.com/index.html")
                 .contains("https://www.terminalfour.com/careers/index.html")
                 .contains("https://www.terminalfour.com/blog/index.html")
-                .contains("mailto:info-uk@terminalfour.com");
-        ;
+                .contains("mailto:info-uk@terminalfour.com")
+                .contains("src=\"https://www.terminalfour.com/index.html\"");
     }
 }
