@@ -20,7 +20,8 @@ class FileVisitorService extends SimpleFileVisitor<Path> {
 
         // Get all regular HTML files
         if (basicFileAttributes.isRegularFile() && file.getFileName().toString().endsWith("html")) {
-            FileProcessingService.processFile(file);
+            FileProcessingService fileProcessingService = new FileProcessingService();
+            fileProcessingService.processFile(file);
         }
         return CONTINUE;
     }
