@@ -26,6 +26,7 @@ class HtmlUpdateService {
         // Replace links in 'img' and 'a' tags
         processTag("a", "href", doc);
         processTag("img", "src", doc);
+        processTag("link", "href", doc);
         return doc.html();
     }
 
