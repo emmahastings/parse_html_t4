@@ -23,5 +23,10 @@ cd my_html_files
 java -jar parse_html.jar
 ```
 
+The application reads a URL from a config.yaml file and uses this to replace relative links.
+The original file will update relative links in img, a and link tags.
+The application creates a backup of the original file e.g. index.html_orig. It also outputs a log: parse_html.log. 
+
+
 ### Authors and Contributors
 Emma Hastings (@emmahastings)
