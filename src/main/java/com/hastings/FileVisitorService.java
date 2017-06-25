@@ -11,7 +11,8 @@ import static java.nio.file.FileVisitResult.CONTINUE;
 /**
  * Created by emmakhastings on 24/06/2017.
  * <p>
- * Concrete implementation of SimpleFileVisitor used to traverse file tree and pass to processing service
+ * Concrete implementation of SimpleFileVisitor used to traverse file tree.
+ * Files are passed to processing service
  */
 class FileVisitorService extends SimpleFileVisitor<Path> {
 

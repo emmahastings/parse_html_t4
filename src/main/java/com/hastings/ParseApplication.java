@@ -18,7 +18,7 @@ public class ParseApplication {
         Path cwd = Paths.get(".").toAbsolutePath().normalize();
         System.out.println("Parse application running in  " + cwd.toString());
 
-        // Create file visitor implementation used to traverse file tree
+        // Create file visitor instance used to traverse file tree
         FileVisitorService fileVisitorService = new FileVisitorService();
         try {
             Files.walkFileTree(cwd, fileVisitorService);

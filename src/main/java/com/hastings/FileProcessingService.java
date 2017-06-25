@@ -15,7 +15,7 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 /**
  * Created by emmakhastings on 24/06/2017.
  * <p>
- * Service to process handle file management
+ * Service to process handle file backup and writing
  */
 class FileProcessingService {
 
