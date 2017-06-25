@@ -6,11 +6,11 @@
 
     <groupId>com.hastings</groupId>
     <artifactId>parse_html_t4</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>Parse HTML</name>
-    <description>Application to parse through files looking for relative links and replacing with absolute links.
+    <description>Application to parse through HTML files looking for relative links and replacing with absolute links.
     </description>
 
     <properties>
