@@ -1,5 +1,6 @@
 package com.hastings;
 
+import com.hastings.util.ParseUtilsService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -17,6 +18,8 @@ import java.nio.file.Path;
 class HtmlUpdateService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    private final String baseUrl = ParseUtilsService.getUrl();
 
     String updateHtml(Path file) throws IOException {
         // Read and parse HTML file
@@ -67,10 +70,10 @@ class HtmlUpdateService {
         // Handle links that are paths relative to the current file
         if (link.startsWith("../")) {
             String[] splitLink = link.split("\\.\\.");
-            return "https://www.terminalfour.com" + splitLink[splitLink.length - 1];
+            return baseUrl + splitLink[splitLink.length - 1];
         } else {
             // Handle links to files in same directory as current file
-            return "https://www.terminalfour.com/" + link;
+            return baseUrl + "/" + link;
         }
     }
 }
